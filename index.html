@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Voting</title>
+    <style>
+        .smiley {
+            cursor: pointer;
+            padding: 10px;
+            margin: 5px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Smiley Voting</h1>
+
+    <div id="smileyContainer"></div>
+
+    <script>
+        const smileys = ['😊', '😄', '😍', '😎', '🥳'];
+        const votes = Array(smileys.length).fill(0);
+
+        function renderSmileys() {
+            const container = document.getElementById('smileyContainer');
+            container.innerHTML = '';
+
+            smileys.forEach((smiley, index) => {
+                const smileyDiv = document.createElement('div');
+                smileyDiv.classList.add('smiley');
+                smileyDiv.textContent = smiley + ' ' + votes[index];
+                smileyDiv.addEventListener('click', () => vote(index));
+                container.appendChild(smileyDiv);
+            });
+        }
+
+        function vote(index) {
+            votes[index]++;
+            renderSmileys();
+        }
+
+        renderSmileys();
+    </script>
+
+</body>
+</html>
